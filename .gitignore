@@ -1,0 +1,4 @@
+*.snap
+*.txt
+.vscode
+snap/snapcraft.yaml

@@ -1,0 +1,32 @@
+name: uv # you probably want to 'snapcraft register <name>'
+base: core22 # the basehttps://t.ly/yb4wq snap is the execution environment for this snap
+version: @UV_VERSION@ # just for humans, typically '1.2+git' or '1.3.2'
+summary: An extremely fast Python package installer and resolver. 
+description: |
+  An extremely fast Python package installer and resolver, written in Rust. 
+  Designed as a drop-in replacement for common pip and pip-tools workflows.
+
+license: MIT
+title: uv
+website: https://astral.sh/
+issues: https://github.com/astral-sh/uv/issues
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: classic # use 'strict' once you have the right plugs and slots
+
+architectures:
+  - build-on: amd64
+  - build-on: arm64
+
+parts:
+  uv:
+    plugin: rust
+    build-packages: [cmake, cargo]
+    build-attributes: [enable-patchelf]
+    source: https://github.com/astral-sh/uv.git
+    source-tag: 0.1.44
+    source-type: git
+
+apps:
+  uv:
+    command: uv
